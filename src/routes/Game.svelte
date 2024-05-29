@@ -8,9 +8,29 @@
 
   let size : number = level.size; //grid size
   let grid :string[] = create_grid(level); //grid of emojis
-  let found:string[] = []; //trrack found emojis
+  let found:string[] = []; //track found emojis
 
   function create_grid(level : Level){
+    const copy = level.emojis.slice();
+    const pairs:string[] = []; // 4*4 = 16 then 16/2 = 2 matches eg sad emoji = sad emoji
+    console.log(copy);
+
+    for(let i =0  ; i< (level.size * level.size) / 2; i++){
+        const index = Math.floor(Math.random() *copy.length)
+        const emoji = copy[index];
+
+        copy.splice(index,1); // to stop repeating values and remove emoji
+        console.log(copy)
+        pairs.push(emoji)
+        console.log(pairs)
+
+    }
+
+    pairs.push(...pairs); // duplicating values 
+    console.log(pairs)
+
+
+    return pairs;
 
   }
   
@@ -20,7 +40,7 @@
 <div class="game">
     <div class="info">Timer</div>
     <div class="grid-container">
-        <Grid />
+        <Grid {grid}/>
     </div>
     <div class="info">result</div>
 </div>
