@@ -1,5 +1,19 @@
-<script>
+<script lang="ts">
+  import { levels } from './levels.ts';
   import Grid from "./Grid.svelte";
+  import type {Level} from './levels'
+
+  const level = levels[0];
+
+
+  let size : number = level.size; //grid size
+  let grid :string[] = create_grid(level); //grid of emojis
+  let found:string[] = []; //trrack found emojis
+
+  function create_grid(level : Level){
+
+  }
+  
 </script>
 
 
