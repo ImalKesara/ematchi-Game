@@ -1,6 +1,13 @@
+<script>
+  import Grid from "./Grid.svelte";
+</script>
+
+
 <div class="game">
     <div class="info">Timer</div>
-    <div class="grid-container">Grid</div>
+    <div class="grid-container">
+        <Grid />
+    </div>
     <div class="info">result</div>
 </div>
 
@@ -12,6 +19,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        font-size: min(1vmin,0.3rem);
     }
 
     .info{
