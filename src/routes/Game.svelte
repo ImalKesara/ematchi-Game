@@ -59,12 +59,12 @@
     .info{
         width: 80vmin;
         height: 10vmin;
-        background-color: rgb(185, 61, 3);
+        background-color: rgb(58, 3, 185);
     }
 
     .grid-container{
         width: 80vmin;
-        background-color: rgb(129, 0, 0);
+        background-color: rgb(58, 3, 185);
         height: 50vmin;
     }
 
