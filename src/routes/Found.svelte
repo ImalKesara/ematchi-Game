@@ -14,6 +14,7 @@
         justify-content: center;
         align-items: center;
         height: 100%;
+        gap: 1em;
     }
 
     .found span{
