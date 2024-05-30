@@ -3,6 +3,7 @@
   import Grid from "./Grid.svelte";
   import type {Level} from './levels'
   import { shuffle } from './utils.js';
+  import Found from './Found.svelte';
 
   const level = levels[0];
 
@@ -47,7 +48,9 @@
         {found}
         />
     </div>
-    <div class="info">result</div>
+    <div class="info">
+        <Found {found}/>
+    </div>
 </div>
 
 <style>
