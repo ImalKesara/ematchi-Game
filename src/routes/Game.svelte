@@ -2,13 +2,12 @@
   import { levels } from './levels.ts';
   import Grid from "./Grid.svelte";
   import type {Level} from './levels'
-  import { shuffle } from './utils.js';
+  import { shuffle } from './utils.ts';
   import Found from './Found.svelte';
   import Countdown from './Countdown.svelte';
   import { onMount } from 'svelte';
 
   const level = levels[0];
-
 
   let size :number = level.size; //grid size
   let grid :string[] = create_grid(level); //grid of emojis
