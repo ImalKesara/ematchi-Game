@@ -6,7 +6,7 @@
   const level = levels[0];
 
 
-  let size : number = level.size; //grid size
+  let size :number = level.size; //grid size
   let grid :string[] = create_grid(level); //grid of emojis
   let found:string[] = []; //track found emojis
 
@@ -40,7 +40,11 @@
 <div class="game">
     <div class="info">Timer</div>
     <div class="grid-container">
-        <Grid {grid}/>
+        <Grid {grid}  on:found = {(e)=>{
+            found = [...found, e.detail.emoji]
+        }}
+        {found}
+        />
     </div>
     <div class="info">result</div>
 </div>
