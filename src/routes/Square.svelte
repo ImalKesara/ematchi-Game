@@ -1,9 +1,11 @@
 <script lang="ts">
-	import { afterUpdate } from 'svelte';
     export let emoji:string;
+    export let selected: boolean;
+
 </script>
 
-<div class="square">
+<div class="square" class:flipped ={selected}>
+    <button on:click />
     <span>{emoji}</span>
 </div>
 
@@ -14,6 +16,17 @@
         justify-content: center;
         align-items: center;
     }
+
+    .flipped button{
+        background-color: red;
+    }
+
+    button{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
     span{
         font-size: 10em; 
     }
