@@ -57,13 +57,13 @@
     }
 
     .info{
-        width: 80vmin;
+        width: 70vmin;
         height: 10vmin;
         background-color: rgb(58, 3, 185);
     }
 
     .grid-container{
-        width: 80vmin;
+        width: 70vmin;
         background-color: rgb(58, 3, 185);
         height: 50vmin;
     }
