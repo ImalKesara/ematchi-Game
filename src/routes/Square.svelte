@@ -1,38 +1,59 @@
 <script lang="ts">
+  import { get_twemoji_url } from "./utils";
+
     export let emoji:string;
     export let selected: boolean;
     export let found: boolean;
 
 </script>
 
-<div class="square" class:flipped ={selected}>
+<div class="square" class:flipped ={selected || found}>
     <button on:click />
+    <div class="backgroundd"/>
     {#if !found}
-        <span>{emoji}</span>
+        <!-- <span>{emoji}</span> -->
+        <img src={get_twemoji_url(emoji)} alt={emoji}>
     {/if}
 </div>
 
 <style>
     .square{
-        background: rgb(122, 5, 255);
         display: flex;  
         justify-content: center;
         align-items: center;
-        
+        transform-style: preserve-3d;
+        transition: transform 0.4s;
     }
 
-    .flipped button{
-        background-color: red;       
+    .flipped{
+        transform: rotateY(180deg);      
     }
 
     button{
         position: absolute;
         width: 100%;
         height: 100%;
+        backface-visibility: hidden;
+        border: 0;
+        border-radius:1em;
     }
 
-    span{
-        font-size: 10em; 
+
+    .backgroundd{
+        border-radius:2em;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #eee;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+    }
+
+    img{
+        width: 8em;
+        height: 8em;
         pointer-events: none;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
     }
 </style>

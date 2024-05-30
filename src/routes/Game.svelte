@@ -86,6 +86,7 @@
         align-items: center;
         flex-direction: column;
         font-size: min(1vmin,0.3rem);
+        perspective: 100vw;
     }
 
     .info{
