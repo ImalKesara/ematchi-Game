@@ -2,6 +2,7 @@
   import { levels } from './levels.ts';
   import Grid from "./Grid.svelte";
   import type {Level} from './levels'
+  import { shuffle } from './utils.js';
 
   const level = levels[0];
 
@@ -30,7 +31,7 @@
     console.log(pairs)
 
 
-    return pairs;
+    return shuffle(pairs);
 
   }
   
