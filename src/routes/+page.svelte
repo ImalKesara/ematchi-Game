@@ -4,6 +4,7 @@
   import Game from "./Game.svelte";
   import {confetti} from '@neoconfetti/svelte';
   import '../style.css';
+  import { theme } from './stores.js';
 
   let state : 'waiting' |'playing'| 'pasued'| 'won'| 'lost'  = 'waiting';
   let game :Game;
@@ -15,6 +16,10 @@
     });
   }
 
+  function toggleTheme(){
+    console.log($theme)
+    theme.set(!$theme);
+  }
 
 </script>
 
@@ -39,17 +44,20 @@
 
 {#if state !== 'playing'}
   <Modal>
+    <div class="mode">
+      <button on:click={toggleTheme} class:btn-darkmode={!$theme} class:btn-lightmode={$theme}>{$theme? "Light" : "Dark"}</button>
+    </div>
     <header>
-      <h1 class="title">e<span>match</span>i </h1>
-      <p>The emoji matching mini-game </p>
+      <h1 class="title" class:para-dark={!$theme} class:para-light={$theme}>e<span>match</span>i</h1>
+      <p class:para-dark={!$theme} class:para-light={$theme}>The emoji matching mini-game </p>
     </header>
 
     {#if state === "won" || state === "lost"}
-      <p>You {state} the game</p>
+      <p class:para-dark={!$theme} class:para-light={$theme}>You {state} the game</p> 
     {:else if  state === 'paused'}
-      <p>You {state} the game</p>
+      <p class:para-dark={!$theme} class:para-light={$theme}>You {state} the game</p>
     {:else if state === "waiting"}
-      <p>choose a level</p>
+      <p class:para-dark={!$theme} class:para-light={$theme}>choose a level</p>
     {/if}
 
     <div class="buttons">
@@ -64,8 +72,9 @@
           }} 
           >{level.lable}</button>
         {/each}
-      {/if}
-    </div>
+        {/if}
+      </div>
+      
 
   </Modal>
 {/if}
@@ -85,6 +94,58 @@
     left: 50%;
     top: 40%;
     pointer-events: none;
+  }
+
+  .btn-darkmode{
+    background-color: white;
+    color:black
+  }
+
+  .btn-lightmode{
+    background-color: black;
+    color:white
+  }
+
+  .para-dark{
+    color: black;
+  }
+
+  .para-light{
+    color: white;
+  }
+
+  .mode{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .mode button{
+    margin: 1.5em;
+    padding: 1em;
+    cursor: pointer;
+    width: 5em;
+    height: 3em;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    color : white;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: rgb(0, 0, 0);
+  }
+
+  .dark{
+        transition: all 0.5s;
+        background-color: black;
+        color :white
+  }
+  .light{
+        background-color: white;
+        transition: all 0.5s;
+        color :black;
+        
   }
 
   h1{

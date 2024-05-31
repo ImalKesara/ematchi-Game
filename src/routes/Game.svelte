@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { theme } from './stores.js';
 // import +page from './+page.svelte';
   import { levels } from './levels.ts';
   import Grid from "./Grid.svelte";
@@ -7,6 +8,7 @@
   import Found from './Found.svelte';
   import Countdown from './Countdown.svelte';
   import { createEventDispatcher, onMount } from 'svelte';
+
  
 
   const dispatch = createEventDispatcher();
@@ -90,7 +92,7 @@
 </script>
 
 
-<div class="game" style="--size:{size}">
+<div class="game" style="--size:{size}" class:light={!$theme} class:dark={$theme}>
     <div class="info">
         {#if playing}
         <Countdown {remaining} duration = {duration} on:click={()=>{
@@ -99,6 +101,7 @@
 
         }}/>
         {/if}
+        
     </div>
     <div class="grid-container">
         <Grid {grid}  on:found = {(e)=>{
@@ -129,6 +132,17 @@
         flex-direction: column;
         font-size: min(1vmin,0.3rem);   
         perspective: 100vw;
+    }
+
+    .dark{
+        transition: all 0.5s;
+        background-color: black;
+        color :white
+    }
+    .light{
+        background-color: white;
+        transition: all 0.5s;
+        color :black
     }
 
     .info{
