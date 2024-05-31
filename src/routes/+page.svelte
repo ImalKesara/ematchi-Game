@@ -121,6 +121,7 @@
   
   }
   .mode button{
+    font-family: Grandstander;
     margin: 1.5em;
     padding: 1em;
     cursor: pointer;
@@ -170,6 +171,7 @@
     gap: 1em;
   }
   .buttons button{
+    font-family: Grandstander;
     cursor: pointer;
     width: 5em;
     height: 3em;
