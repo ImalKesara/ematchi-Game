@@ -1,9 +1,11 @@
 <script lang="ts">
   import { get_twemoji_url } from "./utils";
+  import {send} from './transition';
 
     export let emoji:string;
     export let selected: boolean;
     export let found: boolean;
+    export let group : 'a' | 'b';
 
 </script>
 
@@ -12,7 +14,7 @@
     <div class="backgroundd"/>
     {#if !found}
         <!-- <span>{emoji}</span> -->
-        <img src={get_twemoji_url(emoji)} alt={emoji}>
+        <img out:send= {{key : `${emoji}:${group}`}} src={get_twemoji_url(emoji)} alt={emoji}>
     {/if}
 </div>
 
@@ -44,7 +46,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background-color: #eee;
+        background-color: #b9b9b9;
         transform: rotateY(180deg);
         backface-visibility: hidden;
     }
