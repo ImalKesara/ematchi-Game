@@ -1,20 +1,35 @@
 <script lang="ts">
+// import +page from './+page.svelte';
   import { levels } from './levels.ts';
   import Grid from "./Grid.svelte";
   import type {Level} from './levels'
   import { shuffle } from './utils.ts';
   import Found from './Found.svelte';
   import Countdown from './Countdown.svelte';
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
+ 
 
-  const level = levels[0];
+  const dispatch = createEventDispatcher();
 
-  let size :number = level.size; //grid size
-  let grid :string[] = create_grid(level); //grid of emojis
+  let size :number ; //grid size
+  let grid :string[] = []; //grid of emojis
   let found:string[] = []; //track found emojis
-  let remaining: number  = level.duration;
-  let duration : number = level.duration;
+  let remaining: number ;
+  let duration : number ;
   let playing : boolean = false;
+
+  export function start(level : Level ){
+    size = level.size
+    grid = create_grid(level);
+    remaining = duration = level.duration;
+    resume();
+  }
+
+  function resume(){
+    playing  =true;
+    countdown(); 
+    dispatch('play');
+  }
 
   function create_grid(level : Level){
     const copy = level.emojis.slice();
@@ -45,32 +60,43 @@
     let remaining_at_start= remaining;
 
     function loop(){
-        if(playing) return ;
+        if(!playing) return ;
         requestAnimationFrame(loop)
         remaining =  remaining_at_start - (Date.now() - start);
 
         if(remaining <= 0){
             playing = false;
+            dispatch('lost')
         }
     }
     loop();
   }
 
-  onMount(countdown);
+  
   
 </script>
 
 
-<div class="game">
+<div class="game" style="--size:{size}">
     <div class="info">
-        <Countdown {remaining} duration = {level.duration}/>
+        {#if playing}
+        <Countdown {remaining} duration = {duration} on:click={()=>{
+            playing = false;
+            dispatch('pause')
+        }}/>
+        {/if}
     </div>
     <div class="grid-container">
         <Grid {grid}  on:found = {(e)=>{
-            found = [...found, e.detail.emoji]
+            found = [...found, e.detail.emoji];
+
+            if(found.length  === size * size  / 2){
+                dispatch('win');
+            }
         }}
         {found}
         />
+        
     </div>
     <div class="info">
         <Found {found}/>
@@ -85,7 +111,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: min(1vmin,0.3rem);
+        font-size: min(1vmin,0.3rem);   
         perspective: 100vw;
     }
 
