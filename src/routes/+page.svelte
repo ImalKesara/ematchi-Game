@@ -88,7 +88,9 @@
   }
 
   h1{
-    font-size: 7em;
+    font-size: 10em;
+    line-height: 0;
+    margin: 0.5em;
 
   }
   span{
@@ -98,6 +100,7 @@
   p{
     font-family: Grandstander;
     text-align: center;
+    font-size: 2em;
   }
   .buttons{
     display: flex;

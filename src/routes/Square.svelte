@@ -47,6 +47,7 @@
         width: 100%;
         height: 100%;
         background-color: #b9b9b9;
+        /* background-color: white; */
         transform: rotateY(180deg);
         backface-visibility: hidden;
     }

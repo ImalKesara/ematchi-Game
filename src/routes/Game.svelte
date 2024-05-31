@@ -121,6 +121,7 @@
 <style>
     
     .game{
+        /* background-color:rgb(23, 232, 247); */
         height: 100%;
         display: flex;
         justify-content: center;
