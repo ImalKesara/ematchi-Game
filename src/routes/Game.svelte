@@ -154,5 +154,10 @@
         width: 60vmin;
         height: 60vmin;
     }
+    @media only screen and (max-width: 420px) {
+      .info{
+        margin-bottom: 3em;
+    }
+      }
 
 </style>

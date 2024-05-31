@@ -184,4 +184,16 @@
     font-weight: bold;
     background-color: orangered;
   }
+
+
+  @media only screen and (max-width: 420px) {
+        h1 {
+          font-size: 4em;
+          text-align: center;
+          margin-bottom: .5em;
+        }
+        p{
+          font-size: 1em;
+        }
+      }
 </style>
