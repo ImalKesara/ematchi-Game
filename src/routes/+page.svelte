@@ -7,6 +7,15 @@
 
   let state : 'waiting' |'playing'| 'pasued'| 'won'| 'lost'  = 'waiting';
   let game :Game;
+
+  function playClickSound() {
+    const audio = new Audio("/discord-notification.mp3");
+    audio.play().catch(error => {
+      console.error('Audio playback failed:', error);
+    });
+  }
+
+
 </script>
 
 <Game   
@@ -31,7 +40,7 @@
 {#if state !== 'playing'}
   <Modal>
     <header>
-      <h1>e<span>match</span>i </h1>
+      <h1 class="title">e<span>match</span>i </h1>
       <p>The emoji matching mini-game </p>
     </header>
 
@@ -50,8 +59,10 @@
       {:else}
         {#each levels as level }
           <button on:click={()=>{
+            playClickSound();
             game.start(level);
-          }}>{level.lable}</button>
+          }} 
+          >{level.lable}</button>
         {/each}
       {/if}
     </div>
@@ -77,7 +88,7 @@
   }
 
   h1{
-    font-size: 4em;
+    font-size: 7em;
 
   }
   span{
@@ -86,5 +97,25 @@
 
   p{
     font-family: Grandstander;
+    text-align: center;
+  }
+  .buttons{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1em;
+  }
+  .buttons button{
+    cursor: pointer;
+    width: 5em;
+    height: 3em;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1em;
+    color : white;
+    font-size: 1em;
+    font-weight: bold;
+    background-color: orangered;
   }
 </style>

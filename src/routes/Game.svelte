@@ -66,14 +66,27 @@
 
         if(remaining <= 0){
             playing = false;
-            dispatch('lost')
+            dispatch('lost');
+            LostClickSound();
         }
     }
     loop();
   }
 
-  
-  
+  function WonClickSound() {
+    const audio = new Audio("/get-rick-rolled_ROHEf6w.mp3");
+    audio.play().catch(error => {
+      console.error('Audio playback failed:', error);
+    });
+  }
+
+  function LostClickSound() {
+    const audio = new Audio("/fart-with-extra-reverb.mp3");
+    audio.play().catch(error => {
+      console.error('Audio playback failed:', error);
+    });
+  }
+    
 </script>
 
 
@@ -82,7 +95,8 @@
         {#if playing}
         <Countdown {remaining} duration = {duration} on:click={()=>{
             playing = false;
-            dispatch('pause')
+            dispatch('pause');
+
         }}/>
         {/if}
     </div>
@@ -92,6 +106,7 @@
 
             if(found.length  === size * size  / 2){
                 dispatch('win');
+                WonClickSound();
             }
         }}
         {found}
