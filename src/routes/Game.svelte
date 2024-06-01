@@ -69,25 +69,20 @@
         if(remaining <= 0){
             playing = false;
             dispatch('lost');
-            LostClickSound();
+            playTrack('fart-with-extra-reverb');
         }
     }
     loop();
   }
 
-  function WonClickSound() {
-    const audio = new Audio("/get-rick-rolled_ROHEf6w.mp3");
+  function playTrack(track:string) {
+    const audio = new Audio(`/${track}.mp3`);
     audio.play().catch(error => {
       console.error('Audio playback failed:', error);
     });
   }
 
-  function LostClickSound() {
-    const audio = new Audio("/fart-with-extra-reverb.mp3");
-    audio.play().catch(error => {
-      console.error('Audio playback failed:', error);
-    });
-  }
+
     
 </script>
 
@@ -109,7 +104,8 @@
 
             if(found.length  === size * size  / 2){
                 dispatch('win');
-                WonClickSound();
+                playTrack('get-rick-rolled_ROHEf6w');
+                
             }
         }}
         {found}

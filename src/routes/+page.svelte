@@ -9,8 +9,8 @@
   let state : 'waiting' |'playing'| 'pasued'| 'won'| 'lost'  = 'waiting';
   let game :Game;
 
-  function playClickSound() {
-    const audio = new Audio("/discord-notification.mp3");
+  function playClickSound(track:string) {
+    const audio = new Audio(`/${track}.mp3`);
     audio.play().catch(error => {
       console.error('Audio playback failed:', error);
     });
@@ -67,7 +67,7 @@
       {:else}
         {#each levels as level }
           <button on:click={()=>{
-            playClickSound();
+            playClickSound('discord-notification');
             game.start(level);
           }} 
           >{level.lable}</button>
