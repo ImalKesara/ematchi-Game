@@ -48,7 +48,7 @@
       <button on:click={toggleTheme} class:btn-darkmode={!$theme} class:btn-lightmode={$theme}>{$theme? "Light" : "Dark"}</button>
     </div>
     <header>
-      <h1 class="title" class:para-dark={!$theme} class:para-light={$theme}>e<span>match</span>i</h1>
+      <h1 class="title" class:para-dark={!$theme} class:para-light={$theme}>e<span class:span-dark={!$theme} class:span-light={$theme}>match</span>i</h1>
       <p class:para-dark={!$theme} class:para-light={$theme}>The emoji matching mini-game </p>
     </header>
 
@@ -70,7 +70,7 @@
             playClickSound('discord-notification');
             game.start(level);
           }} 
-          >{level.lable}</button>
+           class:btn-color-Dark={!$theme} class:btn-color-Light={$theme}>{level.lable}</button>
         {/each}
         {/if}
       </div>
@@ -98,12 +98,16 @@
 
   .btn-darkmode{
     background-color: white;
-    color:black
+    color:black;
   }
 
   .btn-lightmode{
     background-color: black;
-    color:white
+    color:white;
+  }
+
+  button.btn-color-Dark {
+    background-color: white;
   }
 
   .para-dark{
@@ -112,6 +116,10 @@
 
   .para-light{
     color: white;
+  }
+
+  .span-light{
+    color : rgb(195, 0, 255);
   }
 
   .mode{
