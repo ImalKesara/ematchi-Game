@@ -18,7 +18,7 @@
 <style>
 
     .pair{
-       background: white;
+       /* background: white; */
        padding: 1em;
         width: 4em;
         height: 4em;
