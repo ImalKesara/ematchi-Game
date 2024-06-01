@@ -106,9 +106,6 @@
     color:white;
   }
 
-  button.btn-color-Dark {
-    background-color: white;
-  }
 
   .para-dark{
     color: black;
