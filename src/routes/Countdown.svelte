@@ -29,7 +29,7 @@
         width: calc(100% * var(--p));
         position: absolute;
         height: 100%;
-        background: #999;
+        background: orangered;
     }
 
     button{
